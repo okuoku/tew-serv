@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+    hitch:
+        build: front-hitch
+        network_mode: host
+
+    varnish:
+        build: front-varnish
+        network_mode: host
+

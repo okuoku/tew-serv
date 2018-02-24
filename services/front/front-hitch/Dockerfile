@@ -5,3 +5,4 @@ RUN echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositorie
 RUN apk update && apk add hitch
 COPY theKey.pem /front/
 COPY run-hitch.sh /front/
+CMD /front/run-hitch.sh
