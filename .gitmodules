@@ -1,0 +1,6 @@
+[submodule "ref/keycloak"]
+	path = ref/keycloak
+	url = https://github.com/jboss-dockerfiles/keycloak
+[submodule "ref/mattermost"]
+	path = ref/mattermost
+	url = https://github.com/mattermost/mattermost-docker
