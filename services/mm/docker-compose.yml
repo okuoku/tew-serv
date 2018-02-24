@@ -1,4 +1,14 @@
-version: "2"
+version: "3"
+
+volumes:
+    pgsql_data:
+        driver: local
+    app_config:
+        driver: local
+    app_data:
+        driver: local
+    app_logs:
+        driver: local
 
 services:
 
@@ -6,7 +16,7 @@ services:
     build: db
     restart: unless-stopped
     volumes:
-      - ./volumes/db/var/lib/postgresql/data:/var/lib/postgresql/data
+      - pgsql_data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
     environment:
       - POSTGRES_USER=mmuser
@@ -26,9 +36,9 @@ services:
       #   - edition=team
     restart: unless-stopped
     volumes:
-      - ./volumes/app/mattermost/config:/mattermost/config:rw
-      - ./volumes/app/mattermost/data:/mattermost/data:rw
-      - ./volumes/app/mattermost/logs:/mattermost/logs:rw
+      - app_config:/mattermost/config:rw
+      - app_data:/mattermost/data:rw
+      - app_logs:/mattermost/logs:rw
       - /etc/localtime:/etc/localtime:ro
     environment:
       # set same as db credentials and dbname
@@ -41,12 +51,12 @@ services:
   web:
     build: web
     ports:
-      - "80:80"
-      - "443:443"
+      - "8100:80"
+        #- "443:443"
     restart: unless-stopped
     volumes:
       # This directory must have cert files if you want to enable SSL
-      - ./volumes/web/cert:/cert:ro
+      #- ./volumes/web/cert:/cert:ro
       - /etc/localtime:/etc/localtime:ro
     # Uncomment for SSL
     # environment:
