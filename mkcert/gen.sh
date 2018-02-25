@@ -1,1 +1,1 @@
-openssl req -newkey rsa:2048 -days 8000 -nodes -x509 -subj "/CN=ubuntults.local" -config mkcert.conf -keyout out.pem -out out.crt && cat out.pem out.crt > theKey.pem && openssl dhparam -rand - 2048 >> theKey.pem
+openssl req -newkey rsa:2048 -days 8000 -nodes -x509 -subj "/CN=ubuntults.local" -config mkcert.conf -keyout out.pem -out out.cer && cat out.pem out.cer > theKey.pem && openssl dhparam -rand - 2048 >> theKey.pem
