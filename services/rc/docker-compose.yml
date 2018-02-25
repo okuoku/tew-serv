@@ -21,6 +21,8 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASS=admin
       - ADMIN_EMAIL=admin@example.com
+      # Allow self-signed certificate for now (for OAuth2)
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
 #       - HTTP_PROXY=http://proxy.domain.com
 #       - HTTPS_PROXY=http://proxy.domain.com
     depends_on:
@@ -30,6 +32,8 @@ services:
     labels:
       - "traefik.backend=rocketchat"
       - "traefik.frontend.rule=Host: your.domain.tld"
+    extra_hosts:
+        - ubuntults.local:${MYIP4}
 
   mongo:
     image: mongo:3.2
