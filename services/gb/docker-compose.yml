@@ -1,0 +1,18 @@
+version: "3"
+
+volumes:
+    data:
+        driver: local
+
+services:
+    gitbucket:
+        build: app
+        #image: takezoe/gitbucket
+        volumes:
+            - data:/gitbucket
+        ports: 
+            - 8080:8080
+            - 29418:29418
+        extra_hosts:
+            - ubuntults.local:${MYIP4}
+
